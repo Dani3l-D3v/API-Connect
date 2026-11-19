@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4fbfa" />
+    <meta name="description" content="API Connect — conecte serviços, acompanhe chamadas e mantenha o controle." />
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+    <title>API Connect — Integrações sob controle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/styles.css" />
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#" data-page="dashboard"><span class="brand-mark">↗</span><span>API Connect<span class="brand-dot">.</span></span></a>
+        <div class="nav-caption">ESPAÇO DE TRABALHO</div>
+        <nav class="navigation" aria-label="Navegação principal">
+          <button class="nav-item active" data-page="dashboard"><span class="nav-icon">⌂</span> Painel <span class="nav-active-dot"></span></button>
+          <button class="nav-item" data-page="integrations"><span class="nav-icon">⛓</span> Integrações</button>
+          <button class="nav-item" data-page="monitoring"><span class="nav-icon">⌁</span> Monitoramento</button>
+          <button class="nav-item" data-page="logs"><span class="nav-icon">▤</span> Histórico <span class="nav-count" id="nav-log-count">0</span></button>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="sidebar-note"><span class="note-icon">✳</span><strong>Conexões em harmonia.</strong><p>Todos os seus serviços, em um só lugar.</p><button data-page="integrations">Explorar integrações <span>→</span></button></div>
+          <div class="sidebar-user"><span class="user-avatar">AC</span><span><strong>API Connect</strong><small>Workspace local</small></span><span class="user-menu">···</span></div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div class="topbar-left"><button class="mobile-menu" id="mobile-menu" aria-label="Abrir menu">☰</button><div class="breadcrumb"><span>Workspace</span><span class="slash">/</span><strong id="breadcrumb-title">Painel</strong></div></div>
+          <div class="topbar-right">
+            <label class="top-search"><span>⌕</span><input id="global-search" type="search" placeholder="Buscar nos registros..." aria-label="Buscar nos registros" /><kbd>⌘ K</kbd></label>
+            <a class="docs-link" href="/docs" target="_blank" rel="noreferrer">API Docs <span>↗</span></a>
+            <span class="top-avatar">AC</span>
+          </div>
+        </header>
+
+        <div class="content">
+          <section class="page page-active" id="page-dashboard">
+            <div class="page-heading"><div><div class="eyebrow"><span></span> MIDDLEWARE &amp; INTEGRAÇÕES</div><h1>Bom dia, bem-vindo de volta.</h1><p>Uma visão clara de como seus serviços estão se conectando.</p></div><div class="page-actions"><span class="date-badge" id="today-date"></span><button class="primary-button" data-page="integrations"><span>＋</span> Nova integração</button></div></div>
+            <div class="metrics-grid">
+              <article class="metric-card"><div class="metric-top"><span>Requisições hoje</span><span class="metric-icon purple">↗</span></div><strong id="metric-today">0</strong><small><span class="metric-live"></span> Chamadas registradas</small></article>
+              <article class="metric-card"><div class="metric-top"><span>Taxa de sucesso</span><span class="metric-icon green">✓</span></div><strong id="metric-success">100%</strong><small><span class="metric-live"></span> Últimas 24 horas</small></article>
+              <article class="metric-card"><div class="metric-top"><span>Latência média</span><span class="metric-icon blue">◷</span></div><strong id="metric-latency">0 <small>ms</small></strong><small><span class="metric-live"></span> Resposta dos serviços</small></article>
+              <article class="metric-card"><div class="metric-top"><span>Integrações ativas</span><span class="metric-icon mint">⛓</span></div><strong id="metric-providers">0/0</strong><small><span class="metric-live"></span> Serviços conectados</small></article>
+            </div>
+            <div class="dashboard-grid">
+              <section class="panel architecture-panel">
+                <div class="panel-heading"><div><h2>Visão geral das integrações</h2><p>Seu middleware conectando serviços em tempo real.</p></div><span class="panel-tag"><i></i> VISÃO DO SISTEMA</span></div>
+                <div class="architecture" id="architecture">
+                  <div class="integration-node node-left"><span class="node-symbol sap-symbol">S</span><span><strong>JSONPlaceholder</strong><small>REST · Demonstração</small></span><i class="node-status operational"></i></div>
+                  <div class="integration-node node-right"><span class="node-symbol weather-symbol">☼</span><span><strong>Open-Meteo</strong><small>REST · Clima</small></span><i class="node-status operational"></i></div>
+                  <div class="integration-node node-left lower"><span class="node-symbol github-symbol">GH</span><span><strong>GitHub</strong><small>REST · Repositórios</small></span><i class="node-status operational"></i></div>
+                  <div class="middleware-node"><span class="middleware-symbol">⛓</span><strong>API Connect</strong><small>Camada de integração</small><span class="middleware-pulse"></span></div>
+                  <div class="integration-node node-right lower"><span class="node-symbol database-symbol">▤</span><span><strong>SQLite</strong><small>Logs · Histórico local</small></span><i class="node-status operational"></i></div>
+                  <svg class="connection-lines" viewBox="0 0 640 230" aria-hidden="true"><path d="M153 56 C225 56 210 96 270 105" /><path d="M487 56 C416 56 430 96 370 105" /><path d="M153 174 C225 174 210 134 270 125" /><path d="M487 174 C416 174 430 134 370 125" /><circle cx="210" cy="56" r="3" /><circle cx="430" cy="56" r="3" /><circle cx="210" cy="174" r="3" /><circle cx="430" cy="174" r="3" /></svg>
+                </div>
+              </section>
+              <section class="panel health-panel">
+                <div class="panel-heading"><div><h2>Saúde &amp; desempenho</h2><p>Indicadores do middleware</p></div><span class="health-icon">⌁</span></div>
+                <div class="health-stat"><div class="health-ring" id="health-ring"><strong id="health-cpu">—</strong></div><div><strong>Saúde das integrações</strong><small id="health-label">Verificando serviços</small></div></div>
+                <div class="health-stat memory-stat"><div class="memory-ring"><strong id="memory-count">0</strong><small>req</small></div><div class="mini-chart-wrap"><strong>Requisições · 24h</strong><svg id="mini-chart" viewBox="0 0 220 54" aria-label="Gráfico de requisições"></svg></div></div>
+                <div class="latency-stat"><span>Latência média</span><strong id="health-latency">— <small>ms</small></strong></div>
+              </section>
+              <section class="panel recent-panel">
+                <div class="panel-heading"><div><h2>Chamadas recentes</h2><p>O que está acontecendo com suas integrações.</p></div><button class="quiet-button" data-page="logs">Ver histórico <span>→</span></button></div>
+                <div class="table-wrap"><table class="log-table"><thead><tr><th>HORÁRIO</th><th>MÉTODO</th><th>INTEGRAÇÃO</th><th>ENDPOINT</th><th>STATUS</th><th>TEMPO</th></tr></thead><tbody id="recent-log-rows"><tr><td class="table-placeholder" colspan="6">Nenhuma chamada registrada até agora.</td></tr></tbody></table></div>
+              </section>
+              <section class="panel provider-summary-panel">
+                <div class="panel-heading"><div><h2>Seus serviços</h2><p>Conexões disponíveis neste workspace.</p></div><button class="icon-button" data-page="integrations" aria-label="Ver integrações">→</button></div>
+                <div class="provider-summary-list" id="provider-summary"></div>
+                <button class="quiet-button summary-link" data-page="integrations">Gerenciar integrações <span>→</span></button>
+              </section>
+            </div>
+          </section>
+
+          <section class="page" id="page-integrations">
+            <div class="page-heading"><div><div class="eyebrow"><span></span> CONECTORES REST</div><h1>Integrações</h1><p>Conecte-se a serviços predefinidos com limites e histórico integrados.</p></div></div>
+            <div class="integration-grid" id="integration-grid"></div>
+            <section class="panel integration-detail" id="integration-detail"><div class="integration-detail-heading"><div><div class="eyebrow"><span></span> EXECUTAR CHAMADA</div><h2 id="detail-title">Escolha uma integração</h2><p id="detail-description">Configure a operação e acompanhe a resposta.</p></div><span class="provider-chip" id="detail-chip"></span></div><div class="provider-settings"><label for="rate-limit-control">Limite por minuto<input id="rate-limit-control" type="number" min="1" max="120" /></label><button class="secondary-button" id="save-limit" type="button">Salvar limite</button><button class="quiet-button" id="toggle-provider" type="button">Pausar integração</button></div><form id="call-form"><label class="field-label" for="operation-select">Operação</label><select class="form-control" id="operation-select" required></select><div class="field-grid" id="operation-fields"></div><div class="call-form-footer"><p>Chamadas usam serviços públicos. Não envie dados privados.</p><button class="primary-button" id="execute-button" type="submit"><span>↗</span> Executar chamada</button></div></form><div class="response-panel" id="response-panel" hidden><div class="response-heading"><span><i class="response-dot"></i> Resposta do serviço</span><button class="quiet-button" id="copy-response" type="button">Copiar JSON</button></div><pre id="response-json"></pre></div></section>
+          </section>
+
+          <section class="page" id="page-monitoring">
+            <div class="page-heading"><div><div class="eyebrow"><span></span> OPERAÇÃO &amp; DISPONIBILIDADE</div><h1>Monitoramento</h1><p>Acompanhe disponibilidade, volume e limites de cada conector.</p></div><button class="secondary-button" id="refresh-monitoring">↻ Atualizar</button></div>
+            <div class="monitoring-kpis" id="monitoring-kpis"></div>
+            <section class="panel monitoring-panel"><div class="panel-heading"><div><h2>Saúde por integração</h2><p>Resumo das chamadas registradas nas últimas 24 horas.</p></div><span class="panel-tag"><i></i> ATUALIZAÇÃO AO VIVO</span></div><div class="monitoring-list" id="monitoring-list"></div></section>
+            <section class="panel chart-panel"><div class="panel-heading"><div><h2>Volume de requisições</h2><p>Distribuição horária das últimas 24 horas.</p></div></div><div class="wide-chart" id="wide-chart"></div></section>
+          </section>
+
+          <section class="page" id="page-logs">
+            <div class="page-heading"><div><div class="eyebrow"><span></span> AUDITORIA &amp; HISTÓRICO</div><h1>Histórico de chamadas</h1><p>Consulte requisições, respostas, erros e tempos de execução.</p></div><button class="danger-quiet" id="clear-logs">Limpar histórico</button></div>
+            <section class="panel logs-panel"><div class="logs-toolbar"><div class="filter-tabs" role="tablist" aria-label="Filtrar por resultado"><button class="filter-tab active" data-outcome="">Todas</button><button class="filter-tab" data-outcome="success">Sucesso</button><button class="filter-tab" data-outcome="upstream_error">Com erro</button><button class="filter-tab" data-outcome="rate_limited">Limitadas</button></div><div class="logs-filters"><select id="provider-filter" class="form-control" aria-label="Filtrar por integração"><option value="">Todas as integrações</option></select><span class="result-count" id="log-result-count">0 registros</span></div></div><div class="table-wrap"><table class="log-table full-log-table"><thead><tr><th>HORÁRIO</th><th>INTEGRAÇÃO</th><th>OPERAÇÃO</th><th>MÉTODO</th><th>STATUS</th><th>LATÊNCIA</th><th></th></tr></thead><tbody id="all-log-rows"><tr><td class="table-placeholder" colspan="7">Carregando histórico...</td></tr></tbody></table></div><div class="pagination"><span id="pagination-label">Mostrando 0 de 0 registros</span><div><button id="previous-page" class="pagination-button" aria-label="Página anterior" disabled>‹</button><button id="next-page" class="pagination-button" aria-label="Próxima página" disabled>›</button></div></div></section>
+          </section>
+
+          <footer class="page-footer"><span>API Connect <b>·</b> Integrações em harmonia.</span><span><a href="/docs" target="_blank" rel="noreferrer">Documentação REST</a><b>·</b><span class="secure-mark">●</span> Desenvolvimento local</span></footer>
+        </div>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <dialog class="log-dialog" id="log-dialog"><div class="dialog-heading"><div><span class="eyebrow"><span></span> DETALHES DA CHAMADA</span><h2 id="dialog-title">Registro</h2></div><button class="icon-button" id="close-dialog" aria-label="Fechar">×</button></div><div id="dialog-content"></div></dialog>
+  </body>
+</html>
